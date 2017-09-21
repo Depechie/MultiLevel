@@ -61,6 +61,14 @@ namespace MultiLevelGrouping.ViewModels
                 Currency = "EUR"
             });
 
+			groupA.Transactions.Add(new Transaction()
+			{
+				AccountID = a.AccountID,
+				Beneficiary = "Beneficiary C",
+				Amount = 5,
+				Currency = "EUR"
+			});
+
             signedAccountTransactions.Add(groupA);
 
 			GroupedTransaction groupB = new GroupedTransaction() { Account = b };

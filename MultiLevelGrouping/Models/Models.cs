@@ -16,6 +16,8 @@ namespace MultiLevelGrouping.Models
         public string Beneficiary { get; set; }
         public int Amount { get; set; }
         public string Currency { get; set; }
+
+        public string DisplayAmount => $"{Amount} {Currency}";
     }
 
     public class GroupedTransaction

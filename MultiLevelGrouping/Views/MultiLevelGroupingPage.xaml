@@ -9,7 +9,7 @@
     <ListView ItemsSource="{Binding GroupedAccounts}"              
               IsGroupingEnabled="true"
               HasUnevenRows="true"
-              SeparatorColor="Transparent"
+              SeparatorColor="Transparent"              
               Margin="0,20,0,0">
         <ListView.GroupHeaderTemplate>
             <DataTemplate>
@@ -17,8 +17,9 @@
                     <Grid>
                         <BoxView BackgroundColor="Gray" />
                         <Label Text="{Binding Name}"
-                           VerticalOptions="Center"
-                           Margin="10" />
+                            TextColor="White" FontAttributes="Bold" FontSize="14"
+                            VerticalOptions="Center"
+                            Margin="10" />
                     </Grid>
                 </ViewCell>
             </DataTemplate>
@@ -33,8 +34,9 @@
                         </Grid.RowDefinitions>
                         <BoxView BackgroundColor="Silver" Grid.Row="0" />
                         <Label Text="{Binding Account.Name}"
-                               Margin="10"
-                               Grid.Row="0"/>
+                            TextColor="White" FontAttributes="Bold" FontSize="18"
+                            Margin="10"
+                            Grid.Row="0"/>
                         
                         <controls:RepeaterView ItemsSource="{Binding Transactions}"
                                                x:TypeArguments="models:Transaction"
@@ -42,9 +44,9 @@
                             <controls:RepeaterView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
-                                        <StackLayout Margin="10,5,10,5">
-                                            <Label Text="{Binding Beneficiary}" />
-                                            <Label Text="{Binding Amount}" />
+                                        <StackLayout Margin="10,5,10,5" Orientation="Horizontal">
+                                            <Label Text="{Binding Beneficiary}" LineBreakMode="TailTruncation" HorizontalOptions="Start" />
+                                            <Label Text="{Binding DisplayAmount}" HorizontalOptions="EndAndExpand" />
                                         </StackLayout>
                                     </ViewCell>
                                 </DataTemplate>
