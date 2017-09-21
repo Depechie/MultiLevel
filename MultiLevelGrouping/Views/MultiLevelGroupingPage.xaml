@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MultiLevelGrouping"
+    xmlns:models="clr-namespace:MultiLevelGrouping.Models;assembly=MultiLevelGrouping"
+    xmlns:controls="clr-namespace:MultiLevelGrouping.Controls;assembly=MultiLevelGrouping"
+    x:Class="MultiLevelGrouping.Views.MultiLevelGroupingPage">
+
+    <ListView ItemsSource="{Binding GroupedAccounts}"              
+              IsGroupingEnabled="true"
+              HasUnevenRows="true"
+              Margin="0,20,0,0">
+        <ListView.GroupHeaderTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Label Text="{Binding Name}" />
+                </ViewCell>
+            </DataTemplate>
+        </ListView.GroupHeaderTemplate>
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <StackLayout>
+                    <Label Text="{Binding Account.Name}" />
+                        <controls:RepeaterView ItemsSource="{Binding Transactions}"
+                                               x:TypeArguments="models:Transaction">
+                            <controls:RepeaterView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout>
+                                            <Label Text="{Binding Beneficiary}" />
+                                            <Label Text="{Binding Amount}" />
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </controls:RepeaterView.ItemTemplate>
+                        </controls:RepeaterView>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>
