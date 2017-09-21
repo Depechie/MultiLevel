@@ -9,25 +9,40 @@
     <ListView ItemsSource="{Binding GroupedAccounts}"              
               IsGroupingEnabled="true"
               HasUnevenRows="true"
+              SeparatorColor="Transparent"
               Margin="0,20,0,0">
         <ListView.GroupHeaderTemplate>
             <DataTemplate>
                 <ViewCell>
-                    <Label Text="{Binding Name}" />
+                    <Grid>
+                        <BoxView BackgroundColor="Gray" />
+                        <Label Text="{Binding Name}"
+                           VerticalOptions="Center"
+                           Margin="10" />
+                    </Grid>
                 </ViewCell>
             </DataTemplate>
         </ListView.GroupHeaderTemplate>
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
-                    <StackLayout>
-                    <Label Text="{Binding Account.Name}" />
+                    <Grid RowSpacing="0" ColumnSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <BoxView BackgroundColor="Silver" Grid.Row="0" />
+                        <Label Text="{Binding Account.Name}"
+                               Margin="10"
+                               Grid.Row="0"/>
+                        
                         <controls:RepeaterView ItemsSource="{Binding Transactions}"
-                                               x:TypeArguments="models:Transaction">
+                                               x:TypeArguments="models:Transaction"
+                                               Grid.Row="1">
                             <controls:RepeaterView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
-                                        <StackLayout>
+                                        <StackLayout Margin="10,5,10,5">
                                             <Label Text="{Binding Beneficiary}" />
                                             <Label Text="{Binding Amount}" />
                                         </StackLayout>
@@ -35,7 +50,7 @@
                                 </DataTemplate>
                             </controls:RepeaterView.ItemTemplate>
                         </controls:RepeaterView>
-                    </StackLayout>
+                    </Grid>
                 </ViewCell>
             </DataTemplate>
         </ListView.ItemTemplate>
